@@ -69,10 +69,9 @@ class _GamePageState extends State<GamePage> {
   }
 
   int _pointsForCurrentRound() {
-    const int maximumScore = 100;
-    int difference = _model.getTarget() - _model.getCurrent();
-
-    return maximumScore - (difference < 0 ? difference * (-1) : difference);
+    const maximumScore = 100;
+    var difference = (_model.getTarget() - _model.getCurrent()).abs();
+    return maximumScore - difference;
   }
 
   void _showAlert(BuildContext context) {
