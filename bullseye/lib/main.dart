@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'prompt.dart';
 import 'control.dart';
+import 'score.dart';
 
 void main() {
   runApp(const BullsEyeApp());
@@ -39,30 +40,41 @@ class _GamePageState extends State<GamePage> {
           children: <Widget>[
             const Prompt(targetValue: 100),
             const Control(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    print('Start over!');
-                  },
-                  child: const Text('Start Over'),
-                ),
-                const Text('Score: '),
-                const Text('99999'),
-                const Text('Round: '),
-                const Text('999'),
-                TextButton(
-                  onPressed: () {
-                    print('Info!');
-                  },
-                  child: const Text('Info'),
-                )
-              ],
+            TextButton(
+              onPressed: () {
+                _showAlert(context);
+              },
+              child: const Text(
+                'Hit Me!',
+                style: TextStyle(color: Colors.blue),
+              ),
             ),
+            const Score(totalScore: 0, round: 1)
           ],
         ),
       ),
     );
+  }
+
+  void _showAlert(BuildContext context) {
+    var okButton = TextButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+          print('Awesome pressed!');
+        },
+        child: const Text('Awesome!'));
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Hello there!'),
+            content: const Text('This is my first pop-up!'),
+            actions: [
+              okButton,
+            ],
+            elevation: 5, // z position
+          );
+        });
   }
 }
