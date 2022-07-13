@@ -55,6 +55,9 @@ class _GamePageState extends State<GamePage> {
             TextButton(
               onPressed: () {
                 _showAlert(context);
+                setState(() {
+                  _model.addToTotalScore(_pointsForCurrentRound());
+                });
               },
               child: const Text(
                 'Hit Me!',
@@ -78,7 +81,6 @@ class _GamePageState extends State<GamePage> {
     var okButton = TextButton(
         onPressed: () {
           Navigator.of(context).pop();
-          print('Awesome pressed!');
         },
         child: const Text('Awesome!'));
 

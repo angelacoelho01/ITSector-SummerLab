@@ -17,12 +17,20 @@ class GameModel {
     return current;
   }
 
-  void setCurrent(int current) {
+  void setCurrent(current) {
     this.current = current;
   }
 
   int getTotalScore() {
     return totalScore;
+  }
+
+  void setTotalScore(totalScore) {
+    this.totalScore = totalScore;
+  }
+
+  void addToTotalScore(int pointsToAdd) {
+    totalScore += pointsToAdd;
   }
 
   int getRound() {
