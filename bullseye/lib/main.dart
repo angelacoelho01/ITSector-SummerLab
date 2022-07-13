@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:math';
 
 import 'prompt.dart';
 import 'control.dart';
@@ -37,7 +38,7 @@ class _GamePageState extends State<GamePage> {
   @override
   void initState() {
     super.initState();
-    _model = GameModel(50);
+    _model = GameModel(Random().nextInt(100) + 1);
   }
 
   @override
@@ -47,7 +48,7 @@ class _GamePageState extends State<GamePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Prompt(targetValue: 100),
+            Prompt(targetValue: _model.getTarget()),
             Control(
               model: _model,
             ),

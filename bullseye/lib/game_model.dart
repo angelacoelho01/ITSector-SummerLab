@@ -28,4 +28,8 @@ class GameModel {
   int getRound() {
     return round;
   }
+
+  int getTarget() {
+    return target;
+  }
 }
