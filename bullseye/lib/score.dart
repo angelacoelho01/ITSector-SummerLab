@@ -26,19 +26,21 @@ class Score extends StatelessWidget {
             onStartOver();
           },
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 32.0, right: 32.0),
-          child: Column(
-            children: <Widget>[
-              Text(
-                'Score: ',
-                style: LabelTextStyle.bodyText1(context),
-              ),
-              Text(
-                '$totalScore',
-                style: ScoreNumberTextStyle.headLine4(context),
-              )
-            ],
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+            child: Column(
+              children: <Widget>[
+                Text(
+                  'Score: ',
+                  style: LabelTextStyle.bodyText1(context),
+                ),
+                Text(
+                  '$totalScore',
+                  style: ScoreNumberTextStyle.headLine4(context),
+                )
+              ],
+            ),
           ),
         ),
         Padding(

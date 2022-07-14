@@ -58,20 +58,29 @@ class _GamePageState extends State<GamePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Prompt(targetValue: _model.getTarget()),
+              Padding(
+                padding: const EdgeInsets.only(top: 48.0),
+                child: Prompt(targetValue: _model.getTarget()),
+              ),
               Control(
                 model: _model,
               ),
-              HitMeButton(
-                text: 'HIT ME',
-                onPressed: () {
-                  _showAlert(context);
-                },
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: HitMeButton(
+                  text: 'HIT ME',
+                  onPressed: () {
+                    _showAlert(context);
+                  },
+                ),
               ),
-              Score(
-                  totalScore: _model.getTotalScore(),
-                  round: _model.getRound(),
-                  onStartOver: _restart)
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Score(
+                    totalScore: _model.getTotalScore(),
+                    round: _model.getRound(),
+                    onStartOver: _restart),
+              )
             ],
           ),
         ),
