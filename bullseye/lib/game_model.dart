@@ -41,6 +41,10 @@ class GameModel {
     round++;
   }
 
+  void setRound(round) {
+    this.round = round;
+  }
+
   int getTarget() {
     return target;
   }

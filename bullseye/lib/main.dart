@@ -38,7 +38,7 @@ class _GamePageState extends State<GamePage> {
   @override
   void initState() {
     super.initState();
-    _model = GameModel(Random().nextInt(100) + 1);
+    _model = GameModel(_getRandomTargetValue());
   }
 
   @override
@@ -61,7 +61,10 @@ class _GamePageState extends State<GamePage> {
                 style: TextStyle(color: Colors.blue),
               ),
             ),
-            Score(totalScore: _model.getTotalScore(), round: _model.getRound())
+            Score(
+                totalScore: _model.getTotalScore(),
+                round: _model.getRound(),
+                onStartOver: _restart)
           ],
         ),
       ),
@@ -97,7 +100,18 @@ class _GamePageState extends State<GamePage> {
     return title;
   }
 
-  int _getDifference() => return (_model.getTarget() - _model.getCurrent()).abs();
+  int _getDifference() => (_model.getTarget() - _model.getCurrent()).abs();
+
+  int _getRandomTargetValue() => Random().nextInt(100) + 1;
+
+  void _restart() {
+    setState(() {
+      _model.setTotalScore(GameModel.scoreStart);
+      _model.setRound(GameModel.roundStart);
+      _model.setCurrent(GameModel.sliderStart);
+      _model.setTarget(_getRandomTargetValue());
+    });
+  }
 
   void _showAlert(BuildContext context) {
     var okButton = TextButton(
@@ -105,7 +119,7 @@ class _GamePageState extends State<GamePage> {
           Navigator.of(context).pop();
           setState(() {
             _model.addToTotalScore(_pointsForCurrentRound());
-            _model.setTarget(Random().nextInt(100) + 1);
+            _model.setTarget(_getRandomTargetValue());
             _model.nextRound();
           });
         },
