@@ -18,6 +18,7 @@ class BullsEyeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     return const MaterialApp(
       title: 'Bullseye',
       home: GamePage(),
@@ -43,29 +44,37 @@ class _GamePageState extends State<GamePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Prompt(targetValue: _model.getTarget()),
-            Control(
-              model: _model,
-            ),
-            TextButton(
-              onPressed: () {
-                _showAlert(context);
-              },
-              child: const Text(
-                'Hit Me!',
-                style: TextStyle(color: Colors.blue),
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        image: DecorationImage(
+            image: AssetImage('images/background.png'), fit: BoxFit.cover),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Prompt(targetValue: _model.getTarget()),
+              Control(
+                model: _model,
               ),
-            ),
-            Score(
-                totalScore: _model.getTotalScore(),
-                round: _model.getRound(),
-                onStartOver: _restart)
-          ],
+              TextButton(
+                onPressed: () {
+                  _showAlert(context);
+                },
+                child: const Text(
+                  'Hit Me!',
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+              Score(
+                  totalScore: _model.getTotalScore(),
+                  round: _model.getRound(),
+                  onStartOver: _restart)
+            ],
+          ),
         ),
       ),
     );
